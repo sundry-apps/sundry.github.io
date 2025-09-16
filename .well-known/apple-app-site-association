@@ -4,7 +4,7 @@
     "details": [
       {
         "appID": "MM85XQEN44.com.sundry.sundry",
-        "paths": [ "*" ]
+        "paths": [ "/items/*", "/users/*" ]
       }
     ]
   },

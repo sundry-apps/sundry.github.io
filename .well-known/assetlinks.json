@@ -1,13 +1,17 @@
 [
   {
-    "relation": ["delegate_permission/common.handle_all_urls"],
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
     "target": {
       "namespace": "android_app",
       "package_name": "com.sundry.sundry",
       "sha256_cert_fingerprints": [
         "a0:4a:4b:21:46:eb:ed:7d:35:9e:84:7e:c7:2a:c6:7e:62:75:98:7e:27:0c:b7:af:18:e9:72:55:01:97:af:40",
         "f9:9c:84:c8:6d:33:57:7f:66:0c:5a:e2:50:da:6e:03:b3:50:1a:24:ee:a2:6e:a0:ea:c8:bd:59:33:de:6c:75",
-        "23:D8:4D:64:EC:BE:F0:EC:97:44:09:97:AA:1E:9B:6A:B0:39:38:2F:0E:54:25:70:E6:5B:78:9E:D7:D5:E8:83"
+        "23:D8:4D:64:EC:BE:F0:EC:97:44:09:97:AA:1E:9B:6A:B0:39:38:2F:0E:54:25:70:E6:5B:78:9E:D7:D5:E8:83",
+        "99:F6:7C:42:B4:67:64:E7:A3:BF:F5:2A:C0:C0:C5:5F:BE:C2:F3:62:50:A2:D0:CE:7E:A8:F1:52:6F:99:3B:2A",
+        "F9:9C:84:C8:6D:33:57:7F:66:0C:5A:E2:50:DA:6E:03:B3:50:1A:24:EE:A2:6E:A0:EA:C8:BD:59:33:DE:6C:75"
       ]
     }
   }
