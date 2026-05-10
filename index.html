@@ -20,8 +20,8 @@
       --primary-light: #7B71E8;
       --accent: #FF6B35;
       --accent-light: #FF8C5A;
-      --dark: #12102B;
-      --light-bg: #F4F3FF;
+      --dark: #2C2875;
+      --light-bg: #F8F7FF;
       --card-border: rgba(91, 79, 219, 0.15);
     }
 
@@ -39,7 +39,7 @@
 
     /* ── HERO ── */
     .hero {
-      background: linear-gradient(140deg, #12102B 0%, #2A2470 55%, #5B4FDB 100%);
+      background: linear-gradient(150deg, #2C2875 0%, #4A44B5 50%, #6D64D4 100%);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -56,8 +56,8 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse 60% 40% at 80% 20%, rgba(255, 107, 53, 0.18) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 50% at 20% 80%, rgba(91, 79, 219, 0.35) 0%, transparent 70%);
+        radial-gradient(ellipse 60% 40% at 80% 20%, rgba(255, 107, 53, 0.10) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 50% at 20% 80%, rgba(109, 100, 212, 0.18) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -68,7 +68,7 @@
       margin-bottom: 2rem;
       position: relative;
       z-index: 1;
-      filter: drop-shadow(0 8px 32px rgba(91,79,219,0.4));
+      filter: drop-shadow(0 6px 24px rgba(91, 79, 219, 0.2));
     }
 
     .hero-tagline {
@@ -124,15 +124,22 @@
       bottom: 2rem;
       left: 50%;
       transform: translateX(-50%);
-      color: rgba(255,255,255,0.4);
+      color: rgba(255, 255, 255, 0.4);
       font-size: 1.5rem;
       animation: bounce 2s infinite;
       z-index: 1;
     }
 
     @keyframes bounce {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(8px); }
+
+      0%,
+      100% {
+        transform: translateX(-50%) translateY(0);
+      }
+
+      50% {
+        transform: translateX(-50%) translateY(8px);
+      }
     }
 
     /* ── SECTION COMMON ── */
@@ -233,7 +240,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 16px rgba(255,107,53,0.35);
+      box-shadow: 0 4px 16px rgba(255, 107, 53, 0.35);
     }
 
     .step h5 {
@@ -259,7 +266,7 @@
 
     /* ── WHY SUNDRY ── */
     .why-sundry {
-      background: linear-gradient(140deg, #12102B 0%, #2A2470 55%, #5B4FDB 100%);
+      background: linear-gradient(150deg, #2C2875 0%, #4A44B5 50%, #6D64D4 100%);
       color: #fff;
     }
 
@@ -272,12 +279,12 @@
     }
 
     .why-sundry .section-sub {
-      color: rgba(255,255,255,0.7);
+      color: rgba(255, 255, 255, 0.7);
     }
 
     .stat-card {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
       border-radius: 16px;
       padding: 1.75rem 1.25rem;
       text-align: center;
@@ -297,7 +304,7 @@
 
     .stat-card .stat-label {
       font-size: 0.9rem;
-      color: rgba(255,255,255,0.7);
+      color: rgba(255, 255, 255, 0.7);
       font-weight: 500;
     }
 
@@ -313,15 +320,15 @@
 
     /* ── FOOTER ── */
     footer {
-      background: var(--dark);
-      color: rgba(255,255,255,0.5);
+      background: #25235A;
+      color: rgba(255, 255, 255, 0.5);
       padding: 2.5rem 1.5rem;
       text-align: center;
       font-size: 0.88rem;
     }
 
     footer a {
-      color: rgba(255,255,255,0.6);
+      color: rgba(255, 255, 255, 0.6);
       text-decoration: none;
       transition: color 0.2s;
     }
@@ -381,7 +388,8 @@
           <div class="feature-card">
             <div class="feature-icon"><i class="bi bi-arrow-left-right"></i></div>
             <h5>Peer-to-Peer Trading</h5>
-            <p>Buy and sell items directly with others near you through secure, private communication — no middlemen.</p>
+            <p>Buy and sell items directly with others near you through secure, private communication — no middlemen.
+            </p>
           </div>
         </div>
 
@@ -455,7 +463,8 @@
             <div class="step-number">1</div>
             <div>
               <h5>List your items</h5>
-              <p>Snap a photo, write a quick description, and post to your personal wall. Your items are live and discoverable in seconds.</p>
+              <p>Snap a photo, write a quick description, and post to your personal wall. Your items are live and
+                discoverable in seconds.</p>
             </div>
           </div>
           <div class="step-connector"></div>
@@ -464,7 +473,8 @@
             <div class="step-number">2</div>
             <div>
               <h5>Make or receive an offer</h5>
-              <p>Browse nearby listings and send a trade, cash, or mixed offer. Or wait for buyers to come to you with their proposals.</p>
+              <p>Browse nearby listings and send a trade, cash, or mixed offer. Or wait for buyers to come to you with
+                their proposals.</p>
             </div>
           </div>
           <div class="step-connector"></div>
@@ -473,7 +483,8 @@
             <div class="step-number">3</div>
             <div>
               <h5>Negotiate &amp; close the deal</h5>
-              <p>Chat, counter-offer, and agree on terms. Then meet up locally to exchange — simple, safe, and satisfying.</p>
+              <p>Chat, counter-offer, and agree on terms. Then meet up locally to exchange — simple, safe, and
+                satisfying.</p>
             </div>
           </div>
 
