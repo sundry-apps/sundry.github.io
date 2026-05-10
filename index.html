@@ -4,45 +4,554 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sundry</title>
+  <title>Sundry — Buy. Sell. Trade.</title>
+  <meta name="description"
+    content="Sundry is a unique marketplace for buying, selling, and trading items with others near you. Turn unused stuff into something better.">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
   <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 0;
-      min-height: 90vh;
+    :root {
+      --primary: #5B4FDB;
+      --primary-dark: #3D35A8;
+      --primary-light: #7B71E8;
+      --accent: #FF6B35;
+      --accent-light: #FF8C5A;
+      --dark: #12102B;
+      --light-bg: #F4F3FF;
+      --card-border: rgba(91, 79, 219, 0.15);
     }
 
-    .title-image {
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fff;
+      color: #1a1a2e;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(140deg, #12102B 0%, #2A2470 55%, #5B4FDB 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 5rem 1.5rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 80% 20%, rgba(255, 107, 53, 0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 50% at 20% 80%, rgba(91, 79, 219, 0.35) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-logo {
       width: 90vw;
-      max-width: 700px;
+      max-width: 520px;
       height: auto;
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 8px 32px rgba(91,79,219,0.4));
+    }
+
+    .hero-tagline {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 1rem;
+    }
+
+    .hero-tagline span {
+      background: linear-gradient(90deg, #FF8C5A, #FF6B35);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: rgba(255, 255, 255, 0.75);
+      max-width: 560px;
+      line-height: 1.6;
+      margin-bottom: 2.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .store-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
     }
 
     .store-badges img {
-      height: 50px;
+      height: 52px;
       object-fit: contain;
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+
+    .store-badges a:hover img {
+      transform: translateY(-2px);
+      filter: brightness(1.1);
+    }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.4);
+      font-size: 1.5rem;
+      animation: bounce 2s infinite;
+      z-index: 1;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ── SECTION COMMON ── */
+    section {
+      padding: 5rem 1.5rem;
+    }
+
+    .section-label {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.6rem, 4vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--dark);
+      margin-bottom: 1rem;
+    }
+
+    .section-sub {
+      font-size: 1.05rem;
+      color: #555;
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    /* ── FEATURES ── */
+    .features {
+      background: var(--light-bg);
+    }
+
+    .feature-card {
+      background: #fff;
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      height: 100%;
+      transition: box-shadow 0.25s ease, transform 0.25s ease;
+    }
+
+    .feature-card:hover {
+      box-shadow: 0 12px 40px rgba(91, 79, 219, 0.14);
+      transform: translateY(-4px);
+    }
+
+    .feature-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 1.1rem;
+      background: linear-gradient(135deg, var(--primary-light), var(--primary));
+      color: #fff;
+    }
+
+    .feature-card h5 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-card p {
+      font-size: 0.92rem;
+      color: #666;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how-it-works {
+      background: #fff;
+    }
+
+    .step {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+    }
+
+    .step-number {
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #FF8C5A, #FF6B35);
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(255,107,53,0.35);
+    }
+
+    .step h5 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 0.35rem;
+    }
+
+    .step p {
+      font-size: 0.92rem;
+      color: #666;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .step-connector {
+      width: 2px;
+      height: 40px;
+      background: linear-gradient(to bottom, #FF6B35, transparent);
+      margin: 0.4rem 0 0.4rem 23px;
+    }
+
+    /* ── WHY SUNDRY ── */
+    .why-sundry {
+      background: linear-gradient(140deg, #12102B 0%, #2A2470 55%, #5B4FDB 100%);
+      color: #fff;
+    }
+
+    .why-sundry .section-label {
+      color: #FF8C5A;
+    }
+
+    .why-sundry .section-title {
+      color: #fff;
+    }
+
+    .why-sundry .section-sub {
+      color: rgba(255,255,255,0.7);
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 16px;
+      padding: 1.75rem 1.25rem;
+      text-align: center;
+      backdrop-filter: blur(8px);
+    }
+
+    .stat-card .stat-num {
+      font-size: 2.2rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, #FF8C5A, #FF6B35);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-card .stat-label {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.7);
+      font-weight: 500;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--light-bg);
+      text-align: center;
+    }
+
+    .cta-section .section-sub {
+      margin: 0 auto 2.5rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.5);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      font-size: 0.88rem;
+    }
+
+    footer a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    footer a:hover {
+      color: #fff;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+      margin-bottom: 1.5rem;
     }
   </style>
 </head>
 
 <body>
-  <div class="d-flex flex-column justify-content-center align-items-center w-100 pt-5 px-3 text-center">
-    <img src="/assets/images/sundry_title_definition.png" class="mb-5 title-image" alt="Sundry Logo">
 
-    <div class="store-badges d-flex gap-3">
-      <a href="https://apps.apple.com/us/app/sundry-marketplace/id6737113628" target="_blank">
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <img src="/assets/images/sundry_title_definition.png" class="hero-logo" alt="Sundry Marketplace">
+    <h1 class="hero-tagline">Buy. Sell. <span>Trade.</span></h1>
+    <p class="hero-sub">
+      Turn the things you no longer need into things you actually want —
+      no waste, no pressure, just flexible modern trading with people near you.
+    </p>
+    <div class="store-badges">
+      <a href="https://apps.apple.com/us/app/sundry-marketplace/id6737113628" target="_blank" rel="noopener">
         <img src="/assets/badges/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg"
           alt="Download on the App Store">
       </a>
-      <a href="https://play.google.com/store/apps/details?id=com.sundry.sundry" target="_blank">
+      <a href="https://play.google.com/store/apps/details?id=com.sundry.sundry" target="_blank" rel="noopener">
         <img src="/assets/badges/GetItOnGooglePlay_Badge_Web_color_English.png" alt="Get it on Google Play">
       </a>
     </div>
-  </div>
+    <div class="hero-scroll-hint">
+      <i class="bi bi-chevron-double-down"></i>
+    </div>
+  </section>
+
+  <!-- ── FEATURES ── -->
+  <section class="features">
+    <div class="container">
+      <div class="text-center mb-5">
+        <p class="section-label">What you can do</p>
+        <h2 class="section-title">A smarter way to trade locally</h2>
+        <p class="section-sub mx-auto">
+          Sundry goes beyond the typical buy-and-sell. Every deal is flexible —
+          trade goods, add cash, negotiate freely, and connect with real people nearby.
+        </p>
+      </div>
+      <div class="row g-4">
+
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="feature-card">
+            <div class="feature-icon"><i class="bi bi-arrow-left-right"></i></div>
+            <h5>Peer-to-Peer Trading</h5>
+            <p>Buy and sell items directly with others near you through secure, private communication — no middlemen.</p>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="feature-card">
+            <div class="feature-icon"><i class="bi bi-box2-heart"></i></div>
+            <h5>One-for-One or Bundle Trades</h5>
+            <p>Swap a single item or put together a bundle. Trade multiple items on either side of the deal.</p>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="feature-card">
+            <div class="feature-icon"><i class="bi bi-cash-coin"></i></div>
+            <h5>Cash + Trade</h5>
+            <p>Add cash to any trade to balance out the value on either side — making every deal fair and flexible.</p>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="feature-card">
+            <div class="feature-icon"><i class="bi bi-repeat"></i></div>
+            <h5>Offers & Counter-Offers</h5>
+            <p>Send an offer, receive a counter, and go back and forth until both sides are happy with the deal.</p>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="feature-card">
+            <div class="feature-icon"><i class="bi bi-chat-dots"></i></div>
+            <h5>In-App Chat</h5>
+            <p>Message buyers or sellers directly to ask questions, share details, and finalize your exchange.</p>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="feature-card">
+            <div class="feature-icon"><i class="bi bi-grid-3x3-gap"></i></div>
+            <h5>Browse &amp; Follow</h5>
+            <p>Explore listings by category or follow users whose items you love — never miss a great find nearby.</p>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-4 offset-lg-2">
+          <div class="feature-card">
+            <div class="feature-icon"><i class="bi bi-person-bounding-box"></i></div>
+            <h5>Your Personal Wall</h5>
+            <p>Showcase what you're selling or trading on your own curated wall — your storefront, your style.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HOW IT WORKS ── -->
+  <section class="how-it-works">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-12 col-lg-5">
+          <p class="section-label">Simple by design</p>
+          <h2 class="section-title">From listing to deal in minutes</h2>
+          <p class="section-sub">
+            Sundry removes the friction from local trading. List what you have,
+            find what you want, and close the deal — on your terms.
+          </p>
+        </div>
+        <div class="col-12 col-lg-6 offset-lg-1">
+
+          <div class="step">
+            <div class="step-number">1</div>
+            <div>
+              <h5>List your items</h5>
+              <p>Snap a photo, write a quick description, and post to your personal wall. Your items are live and discoverable in seconds.</p>
+            </div>
+          </div>
+          <div class="step-connector"></div>
+
+          <div class="step">
+            <div class="step-number">2</div>
+            <div>
+              <h5>Make or receive an offer</h5>
+              <p>Browse nearby listings and send a trade, cash, or mixed offer. Or wait for buyers to come to you with their proposals.</p>
+            </div>
+          </div>
+          <div class="step-connector"></div>
+
+          <div class="step">
+            <div class="step-number">3</div>
+            <div>
+              <h5>Negotiate &amp; close the deal</h5>
+              <p>Chat, counter-offer, and agree on terms. Then meet up locally to exchange — simple, safe, and satisfying.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WHY SUNDRY ── -->
+  <section class="why-sundry">
+    <div class="container text-center">
+      <p class="section-label">Why Sundry?</p>
+      <h2 class="section-title mb-2">Trade smarter, not harder</h2>
+      <p class="section-sub mx-auto mb-5">
+        Most marketplaces only let you buy or sell with cash. Sundry lets you trade the value you already have —
+        your stuff — for the things you actually want.
+      </p>
+      <div class="row g-4 justify-content-center">
+        <div class="col-6 col-md-3">
+          <div class="stat-card">
+            <div class="stat-num">Free</div>
+            <div class="stat-label">to list &amp; browse</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-card">
+            <div class="stat-num">Local</div>
+            <div class="stat-label">people near you</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-card">
+            <div class="stat-num">Flexible</div>
+            <div class="stat-label">trade, sell, or mix</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-card">
+            <div class="stat-num">Secure</div>
+            <div class="stat-label">encrypted in transit</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section class="cta-section">
+    <div class="container">
+      <p class="section-label">Get started today</p>
+      <h2 class="section-title">Discover new value in what you already have</h2>
+      <p class="section-sub mx-auto">
+        Download Sundry for free and start turning your unused items into things you actually want.
+        Available on iOS and Android.
+      </p>
+      <div class="store-badges justify-content-center mt-4">
+        <a href="https://apps.apple.com/us/app/sundry-marketplace/id6737113628" target="_blank" rel="noopener">
+          <img src="/assets/badges/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg"
+            alt="Download on the App Store">
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.sundry.sundry" target="_blank" rel="noopener">
+          <img src="/assets/badges/GetItOnGooglePlay_Badge_Web_color_English.png" alt="Get it on Google Play">
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-links">
+      <a href="/privacy-policy.html">Privacy Policy</a>
+      <a href="/terms-and-conditions.html">Terms &amp; Conditions</a>
+      <a href="/support.html">Support</a>
+    </div>
+    <p class="mb-0">&copy; 2025 Sundry. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
